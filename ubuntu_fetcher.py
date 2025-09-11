@@ -11,8 +11,13 @@ os.makedirs(folder_name, exist_ok=True)
 url = input("Enter the image URL: ")
 
 try:
-    # Fetch the image
-    response = requests.get(url, timeout=10)
+    # Add headers to mimic a browser
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+
+    # Fetch the image with headers
+    response = requests.get(url, headers=headers, timeout=10)
     response.raise_for_status()  # Raise error for bad status codes
 
     # Extract filename from URL or generate one
